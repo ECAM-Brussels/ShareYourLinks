@@ -19,7 +19,7 @@ To run the server, just launch:
 
 You can then access the website on http://localhost:8080:
 
-<kbd>![alt text](https://github.com/ECAM-Brussels/ShareYourLinks/blob/master/screenshots/mainpage.png "Main page")</kbd> <kbd>![alt text](https://github.com/ECAM-Brussels/ShareYourLinks/blob/master/screenshots/addlinkform.png "Add link form")</kbd>
+<kbd>![alt text](https://github.com/ECAM-Brussels/ShareYourLinks/blob/gh-pages/images/mainpage.png "Main page")</kbd> <kbd>![alt text](https://github.com/ECAM-Brussels/ShareYourLinks/blob/gh-pages/images/addlinkform.png "Add link form")</kbd>
 
 After having launched the server, you can launch the GUI:
 
@@ -27,7 +27,7 @@ After having launched the server, you can launch the GUI:
 
 You can then examine the links and delete them:
 
-![alt text](https://github.com/ECAM-Brussels/ShareYourLinks/blob/master/screenshots/admingui.png "Admin GUI")
+![alt text](https://github.com/ECAM-Brussels/ShareYourLinks/blob/gh-pages/images/admingui.png "Admin GUI")
 
 
 ## Contributors
