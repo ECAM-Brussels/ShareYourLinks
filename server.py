@@ -20,9 +20,9 @@ class ShareYourLinks():
             links = '<ol>'
             for link in self.links:
                 links += '''<li>
-                    <a href="{}">{}</a><br/>
+                    <a href="{}">{}</a> <small>(+{})</small><br/>
                     <small>{}</small>
-                </li>'''.format(link['link'], link['title'], link['description'])
+                </li>'''.format(link['link'], link['title'], link['votes'], link['description'])
             links += '</ol>'
         return {'links': links}
 
@@ -36,7 +36,8 @@ class ShareYourLinks():
             self.links.append({
                 'title': title,
                 'link': link,
-                'description': description
+                'description': description,
+                'votes': 1
             })
             self.savelinks()
         raise cherrypy.HTTPRedirect('/')
