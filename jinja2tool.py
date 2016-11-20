@@ -1,15 +1,17 @@
 # jinja2tool.py
 # author: Sébastien Combéfis
 # version: November 20, 2016
-# 
-# Modified version of https://bitbucket.org/Lawouach/cherrypy-recipes/src/tip/web/templating/
+#
+# Modified version of:
+# https://bitbucket.org/Lawouach/cherrypy-recipes/src/tip/web/templating/
 
 import cherrypy
 
 class Jinja2Tool(cherrypy.Tool):
     def __init__(self):
-        cherrypy.Tool.__init__(self, 'before_finalize', self._render, priority=10)
-        
+        cherrypy.Tool.__init__(self, 'before_finalize',
+                               self._render, priority=10)
+
     def _render(self, template=None, debug=False):
         """
         Applied once your page handler has been called. It

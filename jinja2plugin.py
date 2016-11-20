@@ -1,10 +1,10 @@
 # jinja2plugin.py
 # author: Sébastien Combéfis
 # version: November 20, 2016
-# 
-# Modified version of https://bitbucket.org/Lawouach/cherrypy-recipes/src/tip/web/templating/
+#
+# Modified version of:
+# https://bitbucket.org/Lawouach/cherrypy-recipes/src/tip/web/templating/
 
-import cherrypy
 from cherrypy.process import plugins
 
 class Jinja2TemplatePlugin(plugins.SimplePlugin):
@@ -16,14 +16,14 @@ class Jinja2TemplatePlugin(plugins.SimplePlugin):
 
     def start(self):
         """
-        Called when the engine starts. 
+        Called when the engine starts.
         """
         self.bus.log('Setting up Jinja2 resources')
         self.bus.subscribe("lookup-template", self.get_template)
 
     def stop(self):
         """
-        Called when the engine stops. 
+        Called when the engine stops.
         """
         self.bus.log('Freeing up Jinja2 resources')
         self.bus.unsubscribe("lookup-template", self.get_template)
@@ -34,6 +34,7 @@ class Jinja2TemplatePlugin(plugins.SimplePlugin):
         Returns Jinja2's template by name.
 
         Used as follow:
-        >>> template = cherrypy.engine.publish('lookup-template', 'index.html').pop()
+        >>> template = cherrypy.engine.publish('lookup-template',
+        'index.html').pop()
         """
         return self.env.get_template(name)
