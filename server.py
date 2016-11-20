@@ -71,6 +71,16 @@ class ShareYourLinks():
             'links': self.links
         }, ensure_ascii=False).encode('utf-8')
 
+    @cherrypy.expose
+    def deletelink(self, i):
+        """GET route to delete a link."""
+        result = 'KO'
+        i = int(i)
+        if 0 <= i < len(self.links):
+            del(self.links[i])
+            result = 'OK'
+        return result.encode('utf-8')
+
     def loadlinks(self):
         """Load links' database from the 'db.json' file."""
         try:

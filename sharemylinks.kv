@@ -5,6 +5,7 @@
 ShareMyLinksForm:
     rows: 4
     cols: 1
+    links_spr: links
     detail_txt: detail
     Label:
         text: str(len(root.links)) + ' liens chargés.'
@@ -18,3 +19,9 @@ ShareMyLinksForm:
         id: detail
         readonly: True
         size_hint_y: 7
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: 1
+        Button:
+            text: 'Delete'
+            on_press: root.delete()

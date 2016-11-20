@@ -26,12 +26,22 @@ class ShareMyLinksForm(GridLayout):
     i = -1
     
     def showdetail(self, text):
-        self.i = int(text.split('-')[0].strip())
-        link = self.links[self.i]
-        self.detail_txt.text = '''- Title: {}
+        if text != '':
+            self.i = int(text.split('-')[0].strip())
+            link = self.links[self.i]
+            self.detail_txt.text = '''- Title: {}
 - URL: {}
+- Votes: {}
 - Description: {}'''.format(link['title'], link['link'],
-                            link['description'])
+                            link['votes'], link['description'])
+
+    def delete(self):
+        data = urlopen('http://localhost:8080/deletelink?i=' + str(self.i))
+        data = data.read().decode('utf-8')
+        if (data == 'OK'):
+            self.detail_txt.text = ''
+            self.links_spr.text = ''
+            self.links, self.links_spr.values = loaddata()
 
 
 class ShareMyLinksApp(App):
