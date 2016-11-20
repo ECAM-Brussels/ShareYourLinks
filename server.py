@@ -3,6 +3,10 @@ import os.path
 
 import cherrypy
 from cherrypy.lib.static import serve_file
+import jinja2
+
+import jinja2plugin
+import jinja2tool
 
 class ShareYourLinks():
     def __init__(self):
@@ -46,14 +50,11 @@ class ShareYourLinks():
             file.write(json.dumps({'links': self.links}, ensure_ascii=False))
 
 if __name__ == '__main__':
-    # Enregistrement du plugin et de l'outil Jinja2
-    from jinja2 import Environment, FileSystemLoader
-    from jinja2plugin import Jinja2TemplatePlugin
-    env = Environment(loader=FileSystemLoader('.'))
-    Jinja2TemplatePlugin(cherrypy.engine, env=env).subscribe()
-    from jinja2tool import Jinja2Tool
-    cherrypy.tools.template = Jinja2Tool()
-    # Lancement du serveur web
+    # Register Jinja2 plugin and tool
+    env = jinja2.Environment(loader=jinja2.FileSystemLoader('.'))
+    jinja2plugin.Jinja2TemplatePlugin(cherrypy.engine, env=env).subscribe()
+    cherrypy.tools.template = jinja2tool.Jinja2Tool()
+    # Launch web server
     curdir = os.path.dirname(os.path.abspath(__file__))
     cherrypy.quickstart(ShareYourLinks(), '', {
         '/': {
