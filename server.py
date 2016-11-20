@@ -64,6 +64,13 @@ class ShareYourLinks():
             pass
         raise cherrypy.HTTPRedirect('/')
 
+    @cherrypy.expose
+    def getlinks(self):
+        """GET route to get all the links."""
+        return json.dumps({
+            'links': self.links
+        }, ensure_ascii=False).encode('utf-8')
+
     def loadlinks(self):
         """Load links' database from the 'db.json' file."""
         try:

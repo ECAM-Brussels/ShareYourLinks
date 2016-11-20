@@ -1,0 +1,16 @@
+# sharemylinks.kv
+# author: Sébastien Combéfis
+# version: November 20, 2016
+
+ShareMyLinksForm:
+    rows: 3
+    cols: 1
+    Label:
+        text: str(len(root.links)) + ' liens chargés.'
+        size_hint_y: 1
+    Spinner:
+        values: root.titles
+        size_hint_y: 1
+    TextInput:
+        readonly: True
+        size_hint_y: 6
