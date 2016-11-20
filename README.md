@@ -33,3 +33,4 @@ You can then examine the links and delete them:
 ## Contributors
 
 - Sébastien Combéfis
+- Alexis Nootens
