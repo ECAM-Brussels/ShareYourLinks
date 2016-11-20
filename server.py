@@ -56,10 +56,4 @@ if __name__ == '__main__':
     cherrypy.tools.template = jinja2tool.Jinja2Tool()
     # Launch web server
     curdir = os.path.dirname(os.path.abspath(__file__))
-    cherrypy.quickstart(ShareYourLinks(), '', {
-        '/': {
-            'tools.template.on': True,
-            'tools.template.template': 'templates/index.html',
-            'tools.encode.on': False
-        }
-    })
+    cherrypy.quickstart(ShareYourLinks(), '', 'server.conf')
