@@ -1,11 +1,10 @@
+import json
+
 import cherrypy
 
 class ShareYourLinks():
     def __init__(self):
-        self.links = self.loadlinks('db.json')
-
-    def loadlinks(self, path):
-        return []
+        self.links = self.loadlinks()
 
     @cherrypy.expose
     def index(self):
@@ -51,7 +50,20 @@ class ShareYourLinks():
             'link': link,
             'description': description
         })
+        self.savelinks()
         raise cherrypy.HTTPRedirect('/')
+
+    def loadlinks(self):
+        try:
+            with open('db.json', 'r') as file:
+                content = json.loads(file.read())
+                return content['links']
+        except:
+            return []
+
+    def savelinks(self):
+        with open('db.json', 'w') as file:
+            file.write(json.dumps({'links': self.links}, ensure_ascii=False))
 
 if __name__ == '__main__':
     cherrypy.quickstart(ShareYourLinks())
