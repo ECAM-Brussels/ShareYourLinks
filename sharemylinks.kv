@@ -3,14 +3,18 @@
 # version: November 20, 2016
 
 ShareMyLinksForm:
-    rows: 3
+    rows: 4
     cols: 1
+    detail_txt: detail
     Label:
         text: str(len(root.links)) + ' liens chargés.'
         size_hint_y: 1
     Spinner:
+        id: links
         values: root.titles
         size_hint_y: 1
+        on_text: root.showdetail(self.text)
     TextInput:
+        id: detail
         readonly: True
-        size_hint_y: 6
+        size_hint_y: 7

@@ -7,6 +7,7 @@ import json
 from urllib.request import urlopen
 
 from kivy.app import App
+from kivy.properties import ObjectProperty
 from kivy.uix.gridlayout import GridLayout
 
 def loaddata():
@@ -17,8 +18,21 @@ def loaddata():
         titles.append('{} - {}'.format(i, data['links'][i]['title']))
     return data['links'], titles
 
+
 class ShareMyLinksForm(GridLayout):
     links, titles = loaddata()
+    links_spr = ObjectProperty()
+    detail_txt = ObjectProperty()
+    i = -1
+    
+    def showdetail(self, text):
+        self.i = int(text.split('-')[0].strip())
+        link = self.links[self.i]
+        self.detail_txt.text = '''- Title: {}
+- URL: {}
+- Description: {}'''.format(link['title'], link['link'],
+                            link['description'])
+
 
 class ShareMyLinksApp(App):
     title = 'ShareMyLinks'
