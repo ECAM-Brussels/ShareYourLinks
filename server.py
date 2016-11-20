@@ -18,11 +18,13 @@ class ShareYourLinks():
             links = '<p>No link in the database.</p>'
         else:
             links = '<ol>'
-            for link in self.links:
+            for i in range(len(self.links)):
+                link = self.links[i]
                 links += '''<li>
-                    <a href="{}">{}</a> <small>(+{})</small><br/>
+                    <a href="{}">{}</a>
+                    <small>({} votes, <a href="addvote?i={}">+1</a>)</small><br/>
                     <small>{}</small>
-                </li>'''.format(link['link'], link['title'], link['votes'], link['description'])
+                </li>'''.format(link['link'], link['title'], link['votes'], i, link['description'])
             links += '</ol>'
         return {'links': links}
 
@@ -40,6 +42,15 @@ class ShareYourLinks():
                 'votes': 1
             })
             self.savelinks()
+        raise cherrypy.HTTPRedirect('/')
+
+    @cherrypy.expose
+    def addvote(self, i):
+        try:
+            self.links[int(i)]['votes'] += 1
+            self.savelinks()
+        except Exception as e:
+            pass
         raise cherrypy.HTTPRedirect('/')
 
     def loadlinks(self):
