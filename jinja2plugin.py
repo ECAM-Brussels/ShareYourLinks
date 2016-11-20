@@ -1,3 +1,7 @@
+# jinja2plugin.py
+# author: Sébastien Combéfis
+# version: November 20, 2016
+# 
 # Modified version of https://bitbucket.org/Lawouach/cherrypy-recipes/src/tip/web/templating/
 
 import cherrypy

@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+# server.py
+# author: Sébastien Combéfis
+# version: November 20, 2016
+
 import json
 import os.path
 
