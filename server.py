@@ -15,11 +15,14 @@ class ShareYourLinks():
     @cherrypy.expose
     def index(self):
         if len(self.links) == 0:
-            links = '<p>Aucun lien.</p>'
+            links = '<p>No link in the database.</p>'
         else:
             links = '<ol>'
             for link in self.links:
-                links += '<li><a href="{}">{}</a><br/><small>{}</small></li>'.format(link['link'], link['title'], link['description'])
+                links += '''<li>
+                    <a href="{}">{}</a><br/>
+                    <small>{}</small>
+                </li>'''.format(link['link'], link['title'], link['description'])
             links += '</ol>'
         return {'links': links}
 
@@ -29,25 +32,33 @@ class ShareYourLinks():
 
     @cherrypy.expose
     def addlink(self, title, link, description):
-        self.links.append({
-            'title': title,
-            'link': link,
-            'description': description
-        })
-        self.savelinks()
+        if title != '' and link != '':
+            self.links.append({
+                'title': title,
+                'link': link,
+                'description': description
+            })
+            self.savelinks()
         raise cherrypy.HTTPRedirect('/')
 
     def loadlinks(self):
+        """Load links' database from the 'db.json' file."""
         try:
             with open('db.json', 'r') as file:
                 content = json.loads(file.read())
                 return content['links']
         except:
+            cherrypy.log('Loading database failed.')
             return []
 
     def savelinks(self):
-        with open('db.json', 'w') as file:
-            file.write(json.dumps({'links': self.links}, ensure_ascii=False))
+        """Save links' database to the 'db.json' file."""
+        try:
+            with open('db.json', 'w') as file:
+                file.write(json.dumps({'links': self.links}, ensure_ascii=False))
+        except:
+            cherrypy.log('Saving database failed.')
+
 
 if __name__ == '__main__':
     # Register Jinja2 plugin and tool
