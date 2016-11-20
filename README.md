@@ -27,7 +27,7 @@ After having launched the server, you can launch the GUI:
 
 You can then examine the links and delete them:
 
-![alt text](https://github.com/ECAM-Brussels/ShareYourLinks/blob/gh-pages/images/admingui.png "Admin GUI")
+![alt text](https://github.com/ECAM-Brussels/ShareYourLinks/blob/gh-pages/images/admingui.png "Admin GUI (1)") ![alt text](https://github.com/ECAM-Brussels/ShareYourLinks/blob/gh-pages/images/admingui-2.png "Admin GUI (2)")
 
 
 ## Contributors
