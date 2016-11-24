@@ -24,7 +24,7 @@ class ShareYourLinks():
         if len(self.links) == 0:
             links = '<p>No link in the database.</p>'
         else:
-            links = '<ol>'
+            links = '<ol id="links">'
             for i in range(len(self.links)):
                 link = self.links[i]
                 links += '''<li>
